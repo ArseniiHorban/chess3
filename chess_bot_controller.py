@@ -54,7 +54,7 @@ class ChessBotController:
         piece_count = sum(1 for square in board.piece_map().values())
         moves_count = sum(1 for _ in board.legal_moves)
 
-        if piece_count > 24 and moves_count < 30:  # Первые 30 ходов
+        if piece_count > 24 and moves_count < 1000000:  # Первые 30 ходов (временно заменено на отладочное значение)
             print("Используем DFS для начала игры.")
             return self.dfs_bot
         elif 10 <= piece_count <= 24 and moves_count <50:  # Средние ходы

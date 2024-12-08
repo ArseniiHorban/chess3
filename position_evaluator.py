@@ -160,6 +160,10 @@ class PositionEvaluator:
         """
         общая оценка позиции
         """
+        if board.turn == chess.BLACK:
+            multiplier = 1
+        else: 
+            multiplier = -1  # Меняем знак в зависимости от цвета. Теперь бот не рассист
         score = 0
         score += self.material_balance(board) * 4
         score += self.center_control(board) * 3
@@ -167,7 +171,7 @@ class PositionEvaluator:
         score += self.king_safety(board) * 5
         score += self.piece_activity(board) * 1
         score += self.threats(board) * 3
-        return score
+        return score * multiplier
 
     def material_balance(self, board):
         """
